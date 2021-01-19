@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "bettersodiumvideosettingsbutton",
+  "version": "${version}",
+  "name": "Better Sodium Video Settings Button",
+  "description": "Changes the Sodium Video settings back to the original, You can get to the Sodium Video Settings page via the Vanilla video settings page.",
+  "authors": [
+    "LimeShulkerBox"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/better-sodium-button",
+    "sources": "https://github.com/LimeShulkerBox/bettersodiumvideosettingsbutton"
+  },
+  "license": "MIT",
+  "icon": "assets/bettersodiumbutton/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "me.limeshulkerbox.bettersodiumvideosettingsbutton.client.BetterSodiumVideoSettingsButtonClient"
+    ],
+    "main": [
+      "me.limeshulkerbox.bettersodiumvideosettingsbutton.BetterSodiumVideoSettingsButton"
+    ]
+  },
+  "mixins": [
+    "BetterSodiumVideoSettingsButton.mixins.json"
+  ],
+  "depends": {
+    "sodium": "*",
+    "fabricloader": ">=0.10.8",
+    "fabric": "*",
+    "minecraft": "1.16.4"
+  },
+  "custom": {
+    "modmenu:clientsideOnly": true
+  }
+}
