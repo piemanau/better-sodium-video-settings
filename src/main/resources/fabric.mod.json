@@ -16,10 +16,10 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "me.limeshulkerbox.bettersodiumvideosettingsbutton.client.BetterSodiumVideoSettingsButtonClient"
+      "com.limeshulkerbox.bettersodiumvideosettingsbutton.client.BetterSodiumVideoSettingsButtonClient"
     ],
     "main": [
-      "me.limeshulkerbox.bettersodiumvideosettingsbutton.BetterSodiumVideoSettingsButton"
+      "com.limeshulkerbox.bettersodiumvideosettingsbutton.BetterSodiumVideoSettingsButton"
     ]
   },
   "mixins": [

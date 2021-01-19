@@ -1,4 +1,4 @@
-package me.limeshulkerbox.bettersodiumvideosettingsbutton;
+package com.limeshulkerbox.bettersodiumvideosettingsbutton;
 
 import net.fabricmc.api.ModInitializer;
 

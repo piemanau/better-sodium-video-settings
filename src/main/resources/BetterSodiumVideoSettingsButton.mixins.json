@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "me.limeshulkerbox.bettersodiumvideosettingsbutton.mixin",
+  "package": "com.limeshulkerbox.bettersodiumvideosettingsbutton.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "MixinVideoOptionsScreen",

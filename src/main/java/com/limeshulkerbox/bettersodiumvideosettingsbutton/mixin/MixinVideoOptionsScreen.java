@@ -1,4 +1,4 @@
-package me.limeshulkerbox.bettersodiumvideosettingsbutton.mixin;
+package com.limeshulkerbox.bettersodiumvideosettingsbutton.mixin;
 
 import me.jellysquid.mods.sodium.client.gui.SodiumOptionsGUI;
 import net.minecraft.client.MinecraftClient;

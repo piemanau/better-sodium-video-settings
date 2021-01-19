@@ -1,4 +1,4 @@
-package me.limeshulkerbox.bettersodiumvideosettingsbutton.client;
+package com.limeshulkerbox.bettersodiumvideosettingsbutton.client;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;

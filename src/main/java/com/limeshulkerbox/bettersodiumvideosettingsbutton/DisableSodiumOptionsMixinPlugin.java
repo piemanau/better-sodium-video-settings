@@ -1,4 +1,4 @@
-package me.limeshulkerbox.bettersodiumvideosettingsbutton;
+package com.limeshulkerbox.bettersodiumvideosettingsbutton;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
