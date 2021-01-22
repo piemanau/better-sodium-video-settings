@@ -13,13 +13,10 @@
   },
   "license": "MIT",
   "icon": "assets/bettersodiumbutton/icon.png",
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "client": [
       "com.limeshulkerbox.bettersodiumvideosettingsbutton.client.BetterSodiumVideoSettingsButtonClient"
-    ],
-    "main": [
-      "com.limeshulkerbox.bettersodiumvideosettingsbutton.BetterSodiumVideoSettingsButton"
     ]
   },
   "mixins": [
@@ -29,8 +26,5 @@
     "sodium": "*",
     "fabricloader": ">=0.10.8",
     "minecraft": "1.16.x"
-  },
-  "custom": {
-    "modmenu:clientsideOnly": true
   }
 }
