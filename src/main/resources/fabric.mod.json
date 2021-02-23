@@ -12,7 +12,7 @@
     "sources": "https://github.com/LimeShulkerBox/better-sodium-video-settings"
   },
   "license": "MIT",
-  "icon": "assets/bettersodiumbutton/icon.png",
+  "icon": "assets/bettersodiumbutton/logo.png",
   "environment": "client",
   "entrypoints": {
     "client": [
