@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "bettersodiumvideosettingsbutton",
-  "version": "1.0.2.1",
+  "version": "${version}",
   "name": "Better Sodium Video Settings Button",
   "description": "Changes the Sodium Video settings back to the original, You can get to the Sodium Video Settings page via the Vanilla video settings page.",
   "authors": [
