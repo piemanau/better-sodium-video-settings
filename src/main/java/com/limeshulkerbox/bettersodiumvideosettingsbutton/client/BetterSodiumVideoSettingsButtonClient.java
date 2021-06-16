@@ -8,6 +8,6 @@ import net.fabricmc.api.Environment;
 public class BetterSodiumVideoSettingsButtonClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-
+    //new logo
     }
 }
