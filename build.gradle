@@ -22,7 +22,7 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    // I feel like you really don't need to include it
+    // No sodium maven for mc 1.17 yet
     //modImplementation ("com.github.jellysquid3:sodium-fabric:${project.sodium_version}") {
     //    exclude(group : "net.fabricmc.fabric-api")
     //}
