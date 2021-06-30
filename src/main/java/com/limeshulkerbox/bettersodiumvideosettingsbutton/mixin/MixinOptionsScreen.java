@@ -26,7 +26,7 @@ public abstract class MixinOptionsScreen extends Screen {
     @Inject(method = "method_19828(Lnet/minecraft/client/gui/widget/ButtonWidget;)V", at = @At("HEAD"), cancellable = true)
     private void disableSodiumSettings(ButtonWidget widget, CallbackInfo ci) {
         assert this.client != null;
-        this.client.openScreen(new VideoOptionsScreen((Screen) (Object) this, settings));
+        this.client.openScreen(new VideoOptionsScreen(this, settings));
 
         ci.cancel();
     }
