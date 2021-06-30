@@ -4,10 +4,12 @@
   "package": "com.limeshulkerbox.bettersodiumvideosettingsbutton.mixin",
   "compatibilityLevel": "JAVA_16",
   "client": [
-    "MixinVideoOptionsScreen",
-    "MixinOptionsScreen"
+    "MixinOptionsScreen",
+    "MixinVideoOptionsScreen"
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "mixins": [
+  ]
 }
