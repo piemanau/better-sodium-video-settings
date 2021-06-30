@@ -35,12 +35,11 @@ public abstract class MixinVideoOptionsScreen extends Screen {
 
     @Inject(method = "init", at = @At("HEAD"))
     void mixinInit(CallbackInfo callbackInfo) {
-        // We can't do this because sodium hasn't released for 1.17 yet
         this.addDrawableChild(new ButtonWidget(this.width / 2 + 5, this.height - 27, 150, 20, new LiteralText("Sodium Video Settings"), (button) -> {
             assert this.client != null;
-            if (FabricLoader.getInstance().isModLoaded("reeses_sodium_options")) {
+            if (FabricLoader.getInstance().isModLoaded("sodium-extra")) {
                 if (FabricLoader.getInstance().isModLoaded("iris")) {
-                    sodiumIrisVideoOptionsScreen();
+                    sodiumExtraAndIrisVideoOptionsScreen();
                 } else {
                     sodiumExtraVideoOptionsScreen();
                 }
@@ -51,7 +50,7 @@ public abstract class MixinVideoOptionsScreen extends Screen {
     }
 
     @Unique
-    void sodiumIrisVideoOptionsScreen() {
+    void sodiumExtraAndIrisVideoOptionsScreen() {
         if (SodiumIrisVideoOptionsScreenClassCtor == null) {
             try {
                 SodiumIrisVideoOptionsScreenClassCtor = Class.forName("me.flashyreese.mods.reeses_sodium_options.client.gui.SodiumIrisVideoOptionsScreen").getConstructor(Screen.class);
