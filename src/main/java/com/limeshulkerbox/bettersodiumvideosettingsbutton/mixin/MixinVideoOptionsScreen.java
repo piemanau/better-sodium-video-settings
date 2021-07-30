@@ -39,31 +39,11 @@ public abstract class MixinVideoOptionsScreen extends Screen {
         this.addDrawableChild(new ButtonWidget(this.width / 2 + 5, this.height - 27, 150, 20, new TranslatableText("text.bettersodiumvideosettings.sodiumvideosettings"), (button) -> {
             assert this.client != null;
             if (FabricLoader.getInstance().isModLoaded("sodium-extra")) {
-                if (FabricLoader.getInstance().isModLoaded("iris")) {
-                    sodiumExtraAndIrisVideoOptionsScreen();
-                } else {
                     sodiumExtraVideoOptionsScreen();
-                }
             } else {
                 sodiumVideoOptionsScreen();
             }
         }));
-    }
-
-    @Unique
-    void sodiumExtraAndIrisVideoOptionsScreen() {
-        if (SodiumIrisVideoOptionsScreenClassCtor == null) {
-            try {
-                SodiumIrisVideoOptionsScreenClassCtor = Class.forName("me.flashyreese.mods.reeses_sodium_options.client.gui.SodiumIrisVideoOptionsScreen").getConstructor(Screen.class);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        try {
-            this.client.openScreen((Screen) SodiumIrisVideoOptionsScreenClassCtor.newInstance(this));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @Unique
