@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "bettersodiumvideosettingsbutton",
+  "id": "bsvsb",
   "version": "${version}",
   "name": "Better Sodium Video Settings Button",
   "description": "Changes the Sodium Video settings back to the original, You can get to the Sodium Video Settings page via the Vanilla video settings page.",
@@ -20,13 +20,16 @@
     ]
   },
   "mixins": [
-    "BetterSodiumVideoSettingsButton.mixins.json"
+    "bsvsb.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.11.6",
-    "fabric": "*",
+    "fabricloader": ">=0.12.1",
     "minecraft": "1.17.x",
     "sodium": "*",
     "java": ">=16"
+  },
+  "breaks": {
+    "reeses-sodium-options": "<1.2.0",
+    "sodium-extra": "<0.3.5"
   }
 }

@@ -6,7 +6,6 @@ import net.minecraft.client.gui.screen.option.VideoOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonListWidget;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.Option;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import org.apache.commons.lang3.ArrayUtils;
@@ -22,24 +21,25 @@ public abstract class MixinVideoOptionsScreen extends Screen {
     @Final
     @Mutable
     private static Option[] OPTIONS;
-
-    protected MixinVideoOptionsScreen(Text title) {
-        super(title);
-    }
-
-    @Unique
-    Constructor<?> SodiumIrisVideoOptionsScreenClassCtor;
     @Unique
     Constructor<?> SodiumVideoOptionsScreenClassCtor;
     @Unique
     Constructor<?> SodiumOptionsGUIClassCtor;
+    protected MixinVideoOptionsScreen(Text title) {
+        super(title);
+    }
+
+    @Inject(method = "<clinit>", at = @At("TAIL"))
+    private static void removeOptions(CallbackInfo ci) {
+        OPTIONS = ArrayUtils.removeElement(OPTIONS, Option.FULLSCREEN);
+        OPTIONS = ArrayUtils.removeElement(OPTIONS, Option.CLOUDS);
+    }
 
     @Inject(method = "init", at = @At("HEAD"))
     void mixinInit(CallbackInfo callbackInfo) {
         this.addDrawableChild(new ButtonWidget(this.width / 2 + 5, this.height - 27, 150, 20, new TranslatableText("text.bettersodiumvideosettings.sodiumvideosettings"), (button) -> {
-            assert this.client != null;
-            if (FabricLoader.getInstance().isModLoaded("sodium-extra")) {
-                    sodiumExtraVideoOptionsScreen();
+            if (FabricLoader.getInstance().isModLoaded("reeses-sodium-options")) {
+                flashyReesesOptionsScreen();
             } else {
                 sodiumVideoOptionsScreen();
             }
@@ -47,7 +47,7 @@ public abstract class MixinVideoOptionsScreen extends Screen {
     }
 
     @Unique
-    void sodiumExtraVideoOptionsScreen() {
+    void flashyReesesOptionsScreen() {
         if (SodiumVideoOptionsScreenClassCtor == null) {
             try {
                 SodiumVideoOptionsScreenClassCtor = Class.forName("me.flashyreese.mods.reeses_sodium_options.client.gui.SodiumVideoOptionsScreen").getConstructor(Screen.class);
@@ -56,7 +56,8 @@ public abstract class MixinVideoOptionsScreen extends Screen {
             }
         }
         try {
-            this.client.openScreen((Screen) SodiumVideoOptionsScreenClassCtor.newInstance(this));
+            assert this.client != null;
+            this.client.setScreen((Screen) SodiumVideoOptionsScreenClassCtor.newInstance(this));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -72,7 +73,8 @@ public abstract class MixinVideoOptionsScreen extends Screen {
             }
         }
         try {
-            this.client.openScreen((Screen) SodiumOptionsGUIClassCtor.newInstance(this));
+            assert this.client != null;
+            this.client.setScreen((Screen) SodiumOptionsGUIClassCtor.newInstance(this));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -81,12 +83,6 @@ public abstract class MixinVideoOptionsScreen extends Screen {
     @Redirect(method = "init", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/ButtonListWidget;addSingleOptionEntry(Lnet/minecraft/client/option/Option;)I", ordinal = 0))
     private int removeGraphicsButton(ButtonListWidget buttonListWidget, Option option) {
         return 0;
-    }
-
-    @Inject(method = "<clinit>", at = @At("TAIL"))
-    private static void removeOptions(CallbackInfo ci) {
-        OPTIONS = ArrayUtils.removeElement(OPTIONS, Option.FULLSCREEN);
-        OPTIONS = ArrayUtils.removeElement(OPTIONS, Option.CLOUDS);
     }
 
     @ModifyConstant(method = "init", constant = @Constant(intValue = 100, ordinal = 0))
