@@ -23,7 +23,7 @@
     "bsvsb.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.12.1",
+    "fabricloader": ">=0.11.6",
     "minecraft": "1.17.x",
     "sodium": "*",
     "java": ">=16"
