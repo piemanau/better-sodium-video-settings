@@ -11,7 +11,7 @@ import java.util.Set;
 
 @SuppressWarnings("unused")
 public class DisableSodiumOptionsMixinPlugin implements IMixinConfigPlugin {
-    private static final String MIXIN_SODIUM_OPTIONS_SCREEN = "me.jellysquid.mods.sodium.mixin.features.options";
+    private static final String MIXIN_SODIUM_OPTIONS_SCREEN = "me.jellysquid.mods.sodium.mixin.features.options.MixinOptionsScreen";
     private final Logger logger = LogManager.getLogger("Better Sodium Video Settings Button");
 
     @Override
