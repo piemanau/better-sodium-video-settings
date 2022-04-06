@@ -24,7 +24,7 @@
   ],
   "depends": {
     "fabricloader": ">=0.12.8",
-    "minecraft": "1.18.x",
+    "minecraft": "1.18.2",
     "sodium": "*",
     "java": ">=16"
   },
