@@ -67,7 +67,7 @@ public abstract class MixinVideoOptionsScreen extends Screen {
     void sodiumVideoOptionsScreen() {
         if (SodiumOptionsGUIClassCtor == null) {
             try {
-                SodiumOptionsGUIClassCtor = Class.forName("me.jellysquid.mods.sodium.client.gui.SodiumOptionsGUI").getConstructor(Screen.class);
+                SodiumOptionsGUIClassCtor = Class.forName("me.jellysquid.mods.sodium.client.gui").getConstructor(Screen.class);
             } catch (Exception e) {
                 e.printStackTrace();
             }
