@@ -14,11 +14,6 @@
   "license": "MIT",
   "icon": "assets/bettersodiumbutton/logo.png",
   "environment": "client",
-  "entrypoints": {
-    "client": [
-      "com.limeshulkerbox.bettersodiumvideosettingsbutton.client.BetterSodiumVideoSettingsButtonClient"
-    ]
-  },
   "mixins": [
     "bsvsb.mixins.json"
   ],
@@ -26,10 +21,14 @@
     "fabricloader": ">=0.13.3",
     "minecraft": "1.18.2",
     "sodium": ">=0.4.1",
-    "java": ">=16"
+    "java": ">=17"
+  },
+  "recommends": {
+    "reeses-sodium-options": ">=1.4.2",
+    "sodium-extra": ">=0.4.3"
   },
   "breaks": {
-    "reeses-sodium-options": "*",
-    "sodium-extra": "<0.3.5"
+    "reeses-sodium-options": "<1.4.2",
+    "sodium-extra": "<0.4.3"
   }
 }

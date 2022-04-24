@@ -14,9 +14,6 @@ import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
 
 @Mixin(VideoOptionsScreen.class)
 public abstract class MixinVideoOptionsScreen extends Screen {
@@ -28,10 +25,6 @@ public abstract class MixinVideoOptionsScreen extends Screen {
     Constructor<?> SodiumVideoOptionsScreenClassCtor;
     @Unique
     Constructor<?> SodiumOptionsGUIClassCtor;
-    @Unique
-    Field SodiumOptionsGUIClassPagesField;
-    @Unique
-    Class<?> SodiumOptionsGUIClass;
     protected MixinVideoOptionsScreen(Text title) {
         super(title);
     }
@@ -57,40 +50,28 @@ public abstract class MixinVideoOptionsScreen extends Screen {
     void flashyReesesOptionsScreen() {
         if (SodiumVideoOptionsScreenClassCtor == null) {
             try {
-                SodiumVideoOptionsScreenClassCtor = Class.forName("me.flashyreese.mods.reeses_sodium_options.client.gui.SodiumVideoOptionsScreen").getConstructor(Screen.class, List.class);
+                SodiumVideoOptionsScreenClassCtor = Class.forName("me.flashyreese.mods.reeses_sodium_options.client.gui.SodiumVideoOptionsScreen").getConstructor(Screen.class);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         try {
             assert this.client != null;
-            ensureSodiumOptionsGUI();
-            var tmpScreen = SodiumOptionsGUIClassCtor.newInstance(this);
-            var pages = SodiumOptionsGUIClassPagesField.get(tmpScreen);
-            this.client.setScreen((Screen) SodiumVideoOptionsScreenClassCtor.newInstance(this, pages));
+            this.client.setScreen((Screen) SodiumVideoOptionsScreenClassCtor.newInstance(this));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Unique
-    void ensureSodiumOptionsGUI()
-    {
-        if (SodiumOptionsGUIClass == null) {
+    void sodiumVideoOptionsScreen() {
+        if (SodiumOptionsGUIClassCtor == null) {
             try {
-                SodiumOptionsGUIClass = Class.forName("me.jellysquid.mods.sodium.client.gui.SodiumOptionsGUI");
-                SodiumOptionsGUIClassCtor = SodiumOptionsGUIClass.getConstructor(Screen.class);
-                SodiumOptionsGUIClassPagesField = SodiumOptionsGUIClass.getDeclaredField("pages");
-                SodiumOptionsGUIClassPagesField.setAccessible(true);
+                SodiumOptionsGUIClassCtor = Class.forName("me.jellysquid.mods.sodium.client.gui.SodiumOptionsGUI").getConstructor(Screen.class);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-    }
-
-    @Unique
-    void sodiumVideoOptionsScreen() {
-        ensureSodiumOptionsGUI();
         try {
             assert this.client != null;
             this.client.setScreen((Screen) SodiumOptionsGUIClassCtor.newInstance(this));
