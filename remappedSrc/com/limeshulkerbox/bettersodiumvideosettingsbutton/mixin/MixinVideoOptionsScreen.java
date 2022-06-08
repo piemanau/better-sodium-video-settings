@@ -1,4 +1,4 @@
-package com.limeshulkerbox.bettersodiumvideosettingsbutton.mixin;
+package com.limeshulkerbox.bsvsb.mixin;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screen.Screen;

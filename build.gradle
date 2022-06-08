@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '0.11-SNAPSHOT'
+    id 'fabric-loom' version '0.12-SNAPSHOT'
     id 'maven-publish'
     id 'java-library'
 }
@@ -67,11 +67,5 @@ publishing {
                 builtBy remapSourcesJar
             }
         }
-    }
-
-    // Select the repositories you want to publish to
-    // To publish to maven local, no extra repositories are necessary. Just use the task `publishToMavenLocal`.
-    repositories {
-        // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
     }
 }

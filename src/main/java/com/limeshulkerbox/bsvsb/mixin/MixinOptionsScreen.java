@@ -1,4 +1,4 @@
-package com.limeshulkerbox.bettersodiumvideosettingsbutton.mixin;
+package com.limeshulkerbox.bsvsb.mixin;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.OptionsScreen;
@@ -23,8 +23,7 @@ public abstract class MixinOptionsScreen extends Screen {
     protected MixinOptionsScreen(Text title) {
         super(title);
     }
-
-    @Dynamic
+    
     @Inject(method = "method_19828(Lnet/minecraft/client/gui/widget/ButtonWidget;)V", at = @At("HEAD"), cancellable = true)
     private void disableSodiumSettings(ButtonWidget widget, CallbackInfo ci) {
         assert this.client != null;

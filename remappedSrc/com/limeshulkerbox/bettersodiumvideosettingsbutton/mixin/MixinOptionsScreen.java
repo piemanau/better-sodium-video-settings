@@ -1,4 +1,4 @@
-package com.limeshulkerbox.bettersodiumvideosettingsbutton.mixin;
+package com.limeshulkerbox.bsvsb.mixin;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.OptionsScreen;

@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.limeshulkerbox.bettersodiumvideosettingsbutton.mixin",
+  "package": "com.limeshulkerbox.bsvsb.mixin",
   "compatibilityLevel": "JAVA_16",
   "client": [
     "MixinOptionsScreen",
@@ -9,7 +9,5 @@
   ],
   "injectors": {
     "defaultRequire": 1
-  },
-  "mixins": [
-  ]
+  }
 }

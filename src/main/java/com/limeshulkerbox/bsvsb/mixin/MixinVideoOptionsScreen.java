@@ -1,29 +1,27 @@
-package com.limeshulkerbox.bettersodiumvideosettingsbutton.mixin;
+package com.limeshulkerbox.bsvsb.mixin;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.screen.option.VideoOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonListWidget;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.option.Option;
+import net.minecraft.client.option.GameOptions;
+import net.minecraft.client.option.SimpleOption;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import org.apache.commons.lang3.ArrayUtils;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(VideoOptionsScreen.class)
-public abstract class MixinVideoOptionsScreen extends Screen {
-    @Shadow
-    @Final
-    @Mutable
-    private static Option[] OPTIONS;
+public abstract class MixinVideoOptionsScreen extends GameOptionsScreen {
+    @Shadow private ButtonListWidget list;
     @Unique
     Constructor<?> SodiumVideoOptionsScreenClassCtor;
     @Unique
@@ -32,19 +30,21 @@ public abstract class MixinVideoOptionsScreen extends Screen {
     Field SodiumOptionsGUIClassPagesField;
     @Unique
     Class<?> SodiumOptionsGUIClass;
-    protected MixinVideoOptionsScreen(Text title) {
-        super(title);
+
+    public MixinVideoOptionsScreen(Screen parent, GameOptions gameOptions, Text title) {
+        super(parent, gameOptions, title);
     }
 
-    @Inject(method = "<clinit>", at = @At("TAIL"))
-    private static void removeOptions(CallbackInfo ci) {
-        OPTIONS = ArrayUtils.removeElement(OPTIONS, Option.FULLSCREEN);
-        OPTIONS = ArrayUtils.removeElement(OPTIONS, Option.CLOUDS);
+    @Inject(method = "getOptions", at = @At("RETURN"), cancellable = true)
+    private static void getOptions(GameOptions gameOptions, CallbackInfoReturnable<SimpleOption<?>[]> cir) {
+        var value = cir.getReturnValue();
+        value = ArrayUtils.removeElement(value, gameOptions.getChunkBuilderMode());
+        cir.setReturnValue(value);
     }
 
     @Inject(method = "init", at = @At("HEAD"))
     void mixinInit(CallbackInfo callbackInfo) {
-        this.addDrawableChild(new ButtonWidget(this.width / 2 + 5, this.height - 27, 150, 20, new TranslatableText("text.bettersodiumvideosettings.sodiumvideosettings"), (button) -> {
+        this.addDrawableChild(new ButtonWidget(this.width / 2 + 5, this.height - 27, 150, 20, Text.translatable("text.bettersodiumvideosettings.sodiumvideosettings"), (button) -> {
             if (FabricLoader.getInstance().isModLoaded("reeses-sodium-options")) {
                 flashyReesesOptionsScreen();
             } else {
@@ -97,11 +97,6 @@ public abstract class MixinVideoOptionsScreen extends Screen {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @Redirect(method = "init", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/ButtonListWidget;addSingleOptionEntry(Lnet/minecraft/client/option/Option;)I", ordinal = 0))
-    private int removeGraphicsButton(ButtonListWidget buttonListWidget, Option option) {
-        return 0;
     }
 
     @ModifyConstant(method = "init", constant = @Constant(intValue = 100, ordinal = 0))

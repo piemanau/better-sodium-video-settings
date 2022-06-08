@@ -18,17 +18,17 @@
     "bsvsb.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.13.3",
-    "minecraft": "1.18.2",
-    "sodium": ">=0.4.1",
+    "fabricloader": ">=0.14.6",
+    "minecraft": "1.19",
+    "sodium": ">=0.4.2",
     "java": ">=17"
   },
   "recommends": {
-    "reeses-sodium-options": ">=1.4.2",
-    "sodium-extra": ">=0.4.3"
+    "reeses-sodium-options": ">=1.4.3",
+    "sodium-extra": ">=0.4.5"
   },
   "breaks": {
-    "reeses-sodium-options": "<1.4.2",
-    "sodium-extra": "<0.4.3"
+    "reeses-sodium-options": "<1.4.3",
+    "sodium-extra": "<0.4.5"
   }
 }
