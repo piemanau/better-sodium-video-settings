@@ -4,14 +4,17 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.screen.option.VideoOptionsScreen;
-import net.minecraft.client.gui.widget.ButtonListWidget;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.SimpleOption;
 import net.minecraft.text.Text;
 import org.apache.commons.lang3.ArrayUtils;
-import org.spongepowered.asm.mixin.*;
-import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -21,7 +24,6 @@ import java.util.List;
 
 @Mixin(VideoOptionsScreen.class)
 public abstract class MixinVideoOptionsScreen extends GameOptionsScreen {
-    @Shadow private ButtonListWidget list;
     @Unique
     Constructor<?> SodiumVideoOptionsScreenClassCtor;
     @Unique
@@ -36,7 +38,7 @@ public abstract class MixinVideoOptionsScreen extends GameOptionsScreen {
     }
 
     @Inject(method = "getOptions", at = @At("RETURN"), cancellable = true)
-    private static void getOptions(GameOptions gameOptions, CallbackInfoReturnable<SimpleOption<?>[]> cir) {
+    private static void removeChunkBuilderButton(GameOptions gameOptions, CallbackInfoReturnable<SimpleOption<?>[]> cir) {
         var value = cir.getReturnValue();
         value = ArrayUtils.removeElement(value, gameOptions.getChunkBuilderMode());
         cir.setReturnValue(value);
