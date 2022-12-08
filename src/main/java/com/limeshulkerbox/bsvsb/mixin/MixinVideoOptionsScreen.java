@@ -46,13 +46,13 @@ public abstract class MixinVideoOptionsScreen extends GameOptionsScreen {
 
     @Inject(method = "init", at = @At("HEAD"))
     void mixinInit(CallbackInfo callbackInfo) {
-        this.addDrawableChild(new ButtonWidget(this.width / 2 + 5, this.height - 27, 150, 20, Text.translatable("text.bettersodiumvideosettings.sodiumvideosettings"), (button) -> {
+        this.addDrawableChild(new ButtonWidget.Builder(Text.translatable("text.bettersodiumvideosettings.sodiumvideosettings"), (button) -> {
             if (FabricLoader.getInstance().isModLoaded("reeses-sodium-options")) {
                 flashyReesesOptionsScreen();
             } else {
                 sodiumVideoOptionsScreen();
             }
-        }));
+        }).dimensions(this.width / 2 + 5, this.height - 27, 150, 20).build());
     }
 
     @Unique
