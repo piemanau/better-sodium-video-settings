@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = OptionsScreen.class, priority = -5000)
 public abstract class MixinOptionsScreen extends Screen {
@@ -23,10 +24,9 @@ public abstract class MixinOptionsScreen extends Screen {
         super(title);
     }
 
-    @Inject(method = "method_19828(Lnet/minecraft/client/gui/widget/ButtonWidget;)V", at = @At("HEAD"), cancellable = true)
-    private void disableSodiumSettings(ButtonWidget widget, CallbackInfo ci) {
+    @Inject(method = "method_19828", at = @At("HEAD"), cancellable = true)
+    private void disableSodiumSettings(CallbackInfoReturnable<Screen> cir) {
         assert this.client != null;
-        this.client.setScreen(new VideoOptionsScreen(this, this.settings));
-        ci.cancel();
+        cir.setReturnValue(new VideoOptionsScreen(this, this.settings));
     }
 }
