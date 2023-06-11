@@ -5,7 +5,7 @@
   "name": "Better Sodium Video Settings Button",
   "description": "Changes the Sodium Video settings back to the original, You can get to the Sodium Video Settings page via the Vanilla video settings page.",
   "authors": [
-    "LimeShulkerBox"
+    "PiemanDev"
   ],
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/better-sodium-video-settings-button",
@@ -18,9 +18,9 @@
     "bsvsb.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.6",
-    "minecraft": ">=1.19.3",
-    "sodium": ">=0.4.2",
+    "fabricloader": ">=0.14.21",
+    "minecraft": ">=1.20",
+    "sodium": ">=0.4.10",
     "java": ">=17"
   },
   "breaks": {
